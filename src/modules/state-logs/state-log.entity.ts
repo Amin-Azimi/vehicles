@@ -1,6 +1,5 @@
-// stateLog.entity.ts
 import { Vehicle } from '../vehicles/vehicle.entity';
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, Index } from 'typeorm';
 
 @Entity({ name: 'stateLogs' })
 export class StateLog {
@@ -14,6 +13,7 @@ export class StateLog {
   state: string;
 
   @Column({ type: 'timestamp with time zone' })
+  @Index()
   timestamp: Date;
 
   @ManyToOne(() => Vehicle)

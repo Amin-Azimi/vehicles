@@ -11,7 +11,7 @@ export const typeOrmConfig = async (
 ): Promise<PostgresConnectionOptions> => {
   dotenv.config(); 
   const secrets = await getDbCredentialsFromLocalConfigOrSecretManager();
-  const migrationPath = join(__dirname, 'src', 'db', 'migrations', '**', '*{.ts,.js}');
+  const migrationPath = join(__dirname, 'db', 'migrations', '**', '*{.ts,.js}');
 return{
   type: "postgres",
   host: secrets.HOST,

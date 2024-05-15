@@ -8,7 +8,7 @@
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "start": "nest start --ignore src/db/migrations/**/*",
+    "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
@@ -19,8 +19,8 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli",
-    "migration:run": "yarn --cwd ./motorway-takehome-backend ts-node --transpile-only -r tsconfig-paths/register ./node_modules/typeorm/cli migration:run",
-    "migrations": "yarn migration:run -d src/db/ormconfig-migrations.ts"
+    "migration:run": "yarn --cwd ./vehicles ts-node --transpile-only -r tsconfig-paths/register ./node_modules/typeorm/cli migration:run",
+    "migrations": "yarn  migration:run -d src/db/ormconfig-migrations.ts"
   },
   "dependencies": {
     "@aws-sdk/client-secrets-manager": "^3.576.0",

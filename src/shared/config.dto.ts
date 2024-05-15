@@ -1,4 +1,3 @@
-// config.dto.ts
 import { IsString, IsInt, IsNotEmpty } from 'class-validator';
 
 export class ConfigDto {
