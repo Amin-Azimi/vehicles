@@ -16,7 +16,9 @@ export class AwsSecret {
 
   getSecret<T>(secretName: string): Promise<T> {
     return new Promise((resolve, reject) => {
+      console.log('secretName  ---------- ', secretName);
       this.secretsManager.send(new GetSecretValueCommand({ SecretId: secretName }), (err, data) => {
+        console.log('getSecret err ---------- ', err || {});
         if (err) {
           console.error('getSecret error - ', err.message);
           reject(err);
@@ -24,6 +26,7 @@ export class AwsSecret {
           // Decrypts secret using the associated KMS CMK.
           // Depending on whether the secret is a string or binary, one of these fields will be populated.
           if (data['SecretString']) {
+            console.log('getSecret data ---------- ', data || {});
             const params: T = JSON.parse(data.SecretString);
             resolve(params);
           } else {

@@ -18,7 +18,7 @@ export const envDtoValidator = <U extends object>(
         "env variables validation failed:",
         errors.map((e) => ({ ...e, target: undefined }))
       );
-      process.exit(1);
+     process.exit(1);
     }
 
     console.log("notified");

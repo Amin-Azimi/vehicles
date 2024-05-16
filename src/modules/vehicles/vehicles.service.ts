@@ -52,6 +52,8 @@ export class VehiclesService {
   private async findAndValidateVehicle(id: number) {
     const vehicle = await this.vehiclesRepository.findOne({ where: { id } });
     if (!vehicle) {
+      this.logger.error(`Vehicle not found with id ${id}`);
+    
       throw new NotFoundException({
         message: `Vehicle not found with id ${id}`,
         status: HttpStatus.NOT_FOUND,
