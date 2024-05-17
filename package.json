@@ -20,7 +20,8 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli",
     "migration:run": "yarn --cwd ./vehicles ts-node --transpile-only -r tsconfig-paths/register ./node_modules/typeorm/cli migration:run",
-    "migrations": "yarn  migration:run -d src/db/ormconfig-migrations.ts"
+    "migrations": "yarn  migration:run -d src/db/ormconfig-migrations.ts",
+    "pretty-quick": "pretty-quick"
   },
   "dependencies": {
     "@aws-sdk/client-secrets-manager": "^3.576.0",
@@ -36,6 +37,7 @@
     "dotenv": "^16.4.5",
     "nestjs-rate-limiter": "^3.1.0",
     "pg": "^8.11.5",
+    "pretty-quick": "^4.0.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1",
     "swagger-ui-express": "^5.0.0",

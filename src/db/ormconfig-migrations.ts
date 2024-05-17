@@ -1,5 +1,5 @@
-import { typeOrmConfig } from "../ormconfig";
-import { DataSource } from "typeorm";
+import { typeOrmConfig } from '../ormconfig';
+import { DataSource } from 'typeorm';
 
 const initializeDataSource = async () =>
   new DataSource({

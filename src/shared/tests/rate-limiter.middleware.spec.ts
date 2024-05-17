@@ -19,7 +19,7 @@ describe('RateLimiterMiddleware', () => {
     jest.clearAllMocks();
   });
 
-it('should call next if rate limiting passes', async () => {
+  it('should call next if rate limiting passes', async () => {
     // Arrange
     const consumeSpy = jest.spyOn(RateLimiterMemory.prototype, 'consume').mockResolvedValueOnce(mockRequest.ip);
 
@@ -31,11 +31,13 @@ it('should call next if rate limiting passes', async () => {
     expect(mockNext).toHaveBeenCalled();
     expect(mockResponse.status).not.toHaveBeenCalled();
     expect(mockResponse.send).not.toHaveBeenCalled();
-});
+  });
 
   it('should return 429 status if rate limiting fails', async () => {
     // Arrange
-    const consumeSpy = jest.spyOn(RateLimiterMemory.prototype, 'consume').mockRejectedValueOnce(new Error('Rate limit exceeded'));
+    const consumeSpy = jest
+      .spyOn(RateLimiterMemory.prototype, 'consume')
+      .mockRejectedValueOnce(new Error('Rate limit exceeded'));
 
     // Act
     await middleware.use(mockRequest, mockResponse, mockNext);

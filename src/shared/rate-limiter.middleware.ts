@@ -1,4 +1,3 @@
-
 import { Injectable, NestMiddleware } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
 import { RateLimiterMemory } from 'rate-limiter-flexible';
@@ -15,7 +14,7 @@ export class RateLimiterMiddleware implements NestMiddleware {
       await rateLimiter.consume(req.ip);
       next();
     } catch (err) {
-      res.status(429).send('Too Many Requests'); 
+      res.status(429).send('Too Many Requests');
     }
   }
 }

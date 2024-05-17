@@ -8,7 +8,6 @@ export class AwsSecret {
   private readonly secretsManager: SecretsManagerClient;
 
   constructor(@Inject(MODULE_OPTIONS) private params: AwsModuleConfig) {
-
     this.secretsManager = new SecretsManagerClient({
       region: params.region,
     });
@@ -18,7 +17,6 @@ export class AwsSecret {
     return new Promise((resolve, reject) => {
       console.log('secretName  ---------- ', secretName);
       this.secretsManager.send(new GetSecretValueCommand({ SecretId: secretName }), (err, data) => {
-        console.log('getSecret err ---------- ', err || {});
         if (err) {
           console.error('getSecret error - ', err.message);
           reject(err);

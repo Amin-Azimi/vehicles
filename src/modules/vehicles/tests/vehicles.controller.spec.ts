@@ -1,9 +1,9 @@
-import { Test, TestingModule } from "@nestjs/testing";
-import { VehiclesService } from "../vehicles.service";
-import { VehiclesController } from "../vehicles.controller";
-import { mockStateLog, mockTimestamp, mockVehicle } from "./stubs";
+import { Test, TestingModule } from '@nestjs/testing';
+import { VehiclesService } from '../vehicles.service';
+import { VehiclesController } from '../vehicles.controller';
+import { mockStateLog, mockTimestamp, mockVehicle } from './stubs';
 
-describe("VehiclesService", () => {
+describe('VehiclesService', () => {
   let service: VehiclesService;
 
   beforeEach(async () => {
@@ -22,27 +22,22 @@ describe("VehiclesService", () => {
     service = module.get<VehiclesService>(VehiclesService);
   });
 
-  it("should be defined", () => {
+  it('should be defined', () => {
     expect(service).toBeDefined();
   });
 
-  describe("findVehicleStateAtTimestamp", () => {
-    it("should return vehicle state at timestamp", async () => {
+  describe('findVehicleStateAtTimestamp', () => {
+    it('should return vehicle state at timestamp', async () => {
       // Arrange
       const vehicleState = {
         vehicleId: mockVehicle.id,
         state: mockStateLog.state,
         timestamp: mockStateLog.timestamp,
       };
-      jest
-        .spyOn(service, "findVehicleStateAtTimestamp")
-        .mockResolvedValue(vehicleState);
+      jest.spyOn(service, 'findVehicleStateAtTimestamp').mockResolvedValue(vehicleState);
 
       // Act
-      const result = await service.findVehicleStateAtTimestamp(
-        mockVehicle.id,
-        mockTimestamp
-      );
+      const result = await service.findVehicleStateAtTimestamp(mockVehicle.id, mockTimestamp);
 
       // Assert
       expect(result).toEqual({

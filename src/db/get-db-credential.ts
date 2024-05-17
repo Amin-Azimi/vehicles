@@ -1,9 +1,9 @@
-import { AwsSecret } from 'src/shared/aws/aws.secret';
+import { AwsSecret } from '../shared/aws/aws.secret';
 import { DbSecretDto } from './db-secrets.dto';
-import { ENV_IS_LOCAL, ENV_IS_PRODUCTION } from '../shared/app.constants';
+import { getIsProduction } from '../shared/app.constants';
 
 export const getDbCredentialsFromLocalConfigOrSecretManager = async (): Promise<DbSecretDto> => {
-  if (!ENV_IS_PRODUCTION || ENV_IS_LOCAL) {
+  if (!getIsProduction()) {
     return {
       HOST: process.env.DB_HOST,
       PORT: process.env.DB_PORT,
@@ -12,7 +12,6 @@ export const getDbCredentialsFromLocalConfigOrSecretManager = async (): Promise<
       DB_NAME: process.env.DB_NAME,
     } as DbSecretDto;
   }
-
   const awsSecret = new AwsSecret({
     region: process.env['AWS_REGION'],
   });

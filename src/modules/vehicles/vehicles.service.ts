@@ -1,14 +1,8 @@
-import {
-  HttpStatus,
-  Injectable,
-  InternalServerErrorException,
-  Logger,
-  NotFoundException,
-} from "@nestjs/common";
-import { InjectRepository } from "@nestjs/typeorm";
-import { Repository } from "typeorm";
-import { Vehicle } from "./vehicle.entity";
-import { StateLogsService } from "../state-logs/state-logs.service";
+import { HttpStatus, Injectable, InternalServerErrorException, Logger, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Vehicle } from './vehicle.entity';
+import { StateLogsService } from '../state-logs/state-logs.service';
 
 @Injectable()
 export class VehiclesService {
@@ -20,19 +14,12 @@ export class VehiclesService {
   ) {}
 
   public async findVehicleStateAtTimestamp(id: number, timestamp: string) {
-    this.logger.log(
-      `Finding vehicle state at timestamp ${timestamp} for vehicle ${id}`
-    );
+    this.logger.log(`Finding vehicle state at timestamp ${timestamp} for vehicle ${id}`);
     const vehicle = await this.findAndValidateVehicle(id);
 
     try {
-      const stateLog = await this.findStateLogAtTimestamp(
-        vehicle.id,
-        timestamp
-      );
-      this.logger.log(
-        `Found state ${stateLog ? stateLog.state : null} for vehicle ${id} at timestamp ${timestamp}`
-      );
+      const stateLog = await this.findStateLogAtTimestamp(vehicle.id, timestamp);
+      this.logger.log(`Found state ${stateLog ? stateLog.state : null} for vehicle ${id} at timestamp ${timestamp}`);
 
       return {
         vehicleId: vehicle.id,
@@ -53,7 +40,7 @@ export class VehiclesService {
     const vehicle = await this.vehiclesRepository.findOne({ where: { id } });
     if (!vehicle) {
       this.logger.error(`Vehicle not found with id ${id}`);
-    
+
       throw new NotFoundException({
         message: `Vehicle not found with id ${id}`,
         status: HttpStatus.NOT_FOUND,
@@ -64,9 +51,6 @@ export class VehiclesService {
   }
 
   private async findStateLogAtTimestamp(vehicleId: number, timestamp: string) {
-    return this.stateLogsService.findStateAtTimestamp(
-      vehicleId,
-      new Date(timestamp)
-    );
+    return this.stateLogsService.findStateAtTimestamp(vehicleId, new Date(timestamp));
   }
 }

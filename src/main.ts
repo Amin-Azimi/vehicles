@@ -7,7 +7,7 @@ import * as dotenv from 'dotenv';
 import { AppExceptionFilter } from './shared/app-exception.filter';
 
 async function bootstrap() {
-  dotenv.config(); 
+  dotenv.config();
 
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe());
@@ -17,12 +17,12 @@ async function bootstrap() {
   app.use(cookieParser());
 
   const config = new DocumentBuilder()
-  .setTitle('Vehicles API Title')
-  .setDescription('API related to vehicles and their state logs')
-  .setVersion('1.0')
-  .build();
-const document = SwaggerModule.createDocument(app, config);
-SwaggerModule.setup('api', app, document);
+    .setTitle('Vehicles API Title')
+    .setDescription('API related to vehicles and their state logs')
+    .setVersion('1.0')
+    .build();
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api', app, document);
 
   await app.listen(process.env.PORT || 3000);
 }

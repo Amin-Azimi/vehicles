@@ -11,7 +11,7 @@ export class ConfigDto {
 
   @IsString()
   @IsNotEmpty()
-  DB_USER : string;
+  DB_USER: string;
 
   @IsString()
   @IsNotEmpty()
