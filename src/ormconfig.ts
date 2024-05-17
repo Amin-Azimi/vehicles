@@ -1,4 +1,4 @@
-import { ENV_IS_PRODUCTION, getIsProduction } from './shared/app.constants';
+import { getIsProduction } from './shared/app.constants';
 import { Vehicle } from './modules/vehicles/vehicle.entity';
 import { getDbCredentialsFromLocalConfigOrSecretManager } from './db/get-db-credential';
 import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
