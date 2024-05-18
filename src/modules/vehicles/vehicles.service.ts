@@ -15,9 +15,9 @@ export class VehiclesService {
 
   public async findVehicleStateAtTimestamp(id: number, timestamp: string):Promise<Vehicle> {
     this.logger.log(`Finding vehicle state at timestamp ${timestamp} for vehicle ${id}`);
-    const vehicle = await this.findAndValidateVehicle(id);
 
     try {
+      const vehicle = await this.findAndValidateVehicle(id);
       const stateLog = await this.findStateLogAtTimestamp(vehicle.id, timestamp);
 
       vehicle.state = stateLog?.state ?? null;
