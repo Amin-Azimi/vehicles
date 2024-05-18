@@ -13,19 +13,17 @@ export class VehiclesService {
     private readonly logger: Logger
   ) {}
 
-  public async findVehicleStateAtTimestamp(id: number, timestamp: string) {
+  public async findVehicleStateAtTimestamp(id: number, timestamp: string):Promise<Vehicle> {
     this.logger.log(`Finding vehicle state at timestamp ${timestamp} for vehicle ${id}`);
     const vehicle = await this.findAndValidateVehicle(id);
 
     try {
       const stateLog = await this.findStateLogAtTimestamp(vehicle.id, timestamp);
+
+      vehicle.state = stateLog?.state ?? null;
       this.logger.log(`Found state ${stateLog ? stateLog.state : null} for vehicle ${id} at timestamp ${timestamp}`);
 
-      return {
-        vehicleId: vehicle.id,
-        state: stateLog ? stateLog.state : null,
-        timestamp: stateLog ? stateLog.timestamp : null,
-      };
+      return vehicle;
     } catch (error) {
       this.logger.error(error.message);
 
