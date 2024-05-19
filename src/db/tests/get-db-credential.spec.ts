@@ -23,9 +23,8 @@ describe('getDbCredentialsFromLocalConfigOrSecretManager', () => {
     jest.clearAllMocks();
   });
 
-  it('should return credentials from local config in development environment', async () => {
-    process.env.ENV_IS_PRODUCTION = 'false';
-    process.env.ENV_IS_LOCAL = 'true';
+  it('should return credentials from local config in local environment', async () => {
+    process.env.NODE_ENV='local';
     process.env.DB_HOST = 'localhost';
     process.env.DB_PORT = '5432';
     process.env.DB_USER = 'user';

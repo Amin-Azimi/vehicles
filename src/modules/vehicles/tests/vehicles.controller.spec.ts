@@ -29,22 +29,13 @@ describe('VehiclesService', () => {
   describe('findVehicleStateAtTimestamp', () => {
     it('should return vehicle state at timestamp', async () => {
       // Arrange
-      const vehicleState = {
-        vehicleId: mockVehicle.id,
-        state: mockStateLog.state,
-        timestamp: mockStateLog.timestamp,
-      };
-      jest.spyOn(service, 'findVehicleStateAtTimestamp').mockResolvedValue(vehicleState);
+      jest.spyOn(service, 'findVehicleStateAtTimestamp').mockResolvedValue(mockVehicle);
 
       // Act
       const result = await service.findVehicleStateAtTimestamp(mockVehicle.id, mockTimestamp);
 
       // Assert
-      expect(result).toEqual({
-        vehicleId: mockVehicle.id,
-        state: mockStateLog.state,
-        timestamp: mockStateLog.timestamp,
-      });
+      expect(result).toEqual(mockVehicle);
     });
   });
 });
