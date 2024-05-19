@@ -59,9 +59,8 @@ describe('VehiclesService', () => {
       // Assert
       expect(service['findAndValidateVehicle']).toHaveBeenCalledWith(mockVehicle.id);
       expect(result).toEqual({
-        vehicleId: mockVehicle.id,
+        ...mockVehicle,
         state: mockStateLog.state,
-        timestamp: mockStateLog.timestamp,
       });
     });
 
