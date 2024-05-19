@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { VehiclesService } from '../vehicles.service';
 import { VehiclesController } from '../vehicles.controller';
-import { mockStateLog, mockTimestamp, mockVehicle } from './stubs';
+import { mockTimestamp, mockVehicle } from './stubs';
 
 describe('VehiclesService', () => {
   let service: VehiclesService;
